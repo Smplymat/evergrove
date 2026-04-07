@@ -1,0 +1,437 @@
+.profile-content {
+  --background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover;
+}
+
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.profile-header {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.logo-section-center {
+  display: inline-block;
+}
+
+.logo-title {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 3.5rem;
+  color: white;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: white;
+  letter-spacing: 3px;
+  margin: 0.5rem 0 0 0;
+  font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Profile Main */
+.profile-main {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 30px 30px 0 0;
+  padding: 2rem;
+  margin-top: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Top Bar */
+.profile-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.profile-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* User Info Section */
+.user-info-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.edit-avatar-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: #4CAF50;
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-avatar-button:hover {
+  transform: scale(1.1);
+}
+
+.user-details {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.edit-name-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.3rem;
+  transition: all 0.3s;
+}
+
+.edit-name-button:hover {
+  transform: scale(1.2);
+}
+
+.user-tagline {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.menu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(5px);
+}
+
+.menu-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-icon.personal-info {
+  background: rgba(244, 67, 54, 0.8);
+  color: white;
+}
+
+.menu-icon.addresses {
+  background: rgba(63, 81, 181, 0.8);
+  color: white;
+}
+
+.menu-icon.track {
+  background: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.menu-icon.favorite {
+  background: rgba(233, 30, 99, 0.8);
+  color: white;
+}
+
+.menu-icon.payment {
+  background: rgba(255, 152, 0, 0.8);
+  color: white;
+}
+
+.menu-icon.notification {
+  background: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.menu-icon.faq {
+  background: rgba(255, 193, 7, 0.8);
+  color: white;
+}
+
+.menu-icon.review {
+  background: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.menu-icon.settings {
+  background: rgba(96, 125, 139, 0.8);
+  color: white;
+}
+
+.menu-text {
+  flex: 1;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+}
+
+.menu-arrow {
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+/* Sign Out Section */
+.signout-section {
+  text-align: right;
+  padding: 1rem 0;
+}
+
+.signout-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-hover: rgba(255, 255, 255, 0.3);
+  --color: white;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: white;
+  --border-radius: 25px;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+  --padding-top: 0.7rem;
+  --padding-bottom: 0.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .menu-grid {
+    gap: 1.5rem;
+  }
+
+  .user-info-section {
+    gap: 1.5rem;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-main {
+    padding: 1.5rem;
+  }
+
+  .logo-title {
+    font-size: 2.5rem;
+  }
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .user-info-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-name {
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .menu-item {
+    padding: 1rem 1.2rem;
+  }
+
+  .menu-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header {
+    padding: 1.5rem 0 0.5rem;
+  }
+
+  .logo-title {
+    font-size: 2rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .profile-main {
+    padding: 1rem;
+  }
+
+  .profile-top-bar {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-button,
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile-title {
+    font-size: 1.3rem;
+  }
+
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .user-name {
+    font-size: 1.2rem;
+  }
+
+  .user-tagline {
+    font-size: 0.9rem;
+  }
+
+  .menu-item {
+    padding: 0.9rem 1rem;
+  }
+
+  .menu-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .signout-section {
+    text-align: center;
+  }
+}

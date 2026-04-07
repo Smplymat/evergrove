@@ -1,0 +1,236 @@
+/*
+ * MessagePage.css
+ * Design merged from source (index.html + style.css + globals.css).
+ * Every section is annotated with the originating source selector.
+ * Existing class names (.message-content, .message-container, etc.) are
+ * kept so no external references break.
+ */
+
+/* ── Page background ──────────────────────────────────────────────────────
+   Source: .message { background-image: url(./img/home-page.png);
+                      background-size: 100% 100%; min-width:1440px; }
+   We use center/cover for responsiveness while keeping the same intent.  */
+.message-content {
+  --background: transparent;
+}
+
+.message-container {
+  min-height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem 3rem;
+  gap: 1.5rem;
+}
+
+/* ── Logo header ──────────────────────────────────────────────────────────
+   Source: .logo { display:flex; flex-direction:column; gap:8px; }
+           .text-wrapper-3 { font-family:"Sacramento-Regular"; font-size:96px; color:#fff; }
+           .text-wrapper-4 { font-family:"Edu QLD Beginner-Regular"; font-size:32px; color:#fff; } */
+.message-header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.logo-section-center {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px; /* source: .logo gap:8px */
+}
+
+/* Source: .text-wrapper-3 — Sacramento script, 96px */
+.logo-title {
+  font-family: 'Sacramento', 'Brush Script MT', cursive;
+  font-size: 5rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+/* Source: .text-wrapper-4 — Edu QLD Beginner, 32px */
+.logo-subtitle {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin: 0;
+  font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+/* ── Message form card ────────────────────────────────────────────────────
+   Source: .message .rectangle {
+     background-color: #41461d33;
+     border-radius: 45px;
+     backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), …;
+   }
+   Width/height are fluid here; the source used fixed px for a 1440 canvas. */
+.message-form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 718px;          /* source card width: 718px */
+  background-color: #41461d33; /* source: background-color */
+  border-radius: 45px;         /* source: border-radius */
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  /* source: inset box-shadow */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  padding: 2.5rem 2rem 2rem;
+}
+
+/* ── Form title ───────────────────────────────────────────────────────────
+   Source: .text-wrapper { font-family:"Figtree-Regular"; font-size:24px;
+                           color:#fff; letter-spacing:0; } */
+.form-title {
+  font-family: 'Figtree', 'Helvetica', sans-serif;
+  font-weight: 400;            /* source: font-weight:400 */
+  font-size: 1.5rem;           /* source: 24px */
+  color: #ffffff;
+  letter-spacing: 0;
+  margin: 0 0 0.75rem;
+  text-align: center;
+}
+
+/* ── Divider line ─────────────────────────────────────────────────────────
+   Source: .line { width:408px; height:3px; } (line-5.svg horizontal rule) */
+.form-divider {
+  width: 100%;
+  max-width: 408px;   /* source: 408px */
+  height: 3px;        /* source: height:3px */
+  background: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.75rem;
+  border: none;
+}
+
+/* ── Textarea container ───────────────────────────────────────────────────
+   Source: .div { background-color:#dddddd80; width:432px; height:224px; }
+   We let height grow naturally for responsiveness.                        */
+.textarea-container {
+  width: 100%;
+  max-width: 432px;   /* source: 432px */
+  margin-bottom: 1.75rem;
+}
+
+.message-textarea {
+  width: 100%;
+  min-height: 224px;                  /* source: height:224px */
+  background-color: #dddddd80;        /* source: background-color */
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-family: 'Figtree', 'Helvetica', sans-serif;
+  font-size: 1rem;
+  color: #2c2c2c;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.message-textarea::placeholder {
+  color: #888;
+  opacity: 0.8;
+}
+
+.message-textarea:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ── Send button ──────────────────────────────────────────────────────────
+   Source: .rectangle-2 { background-color:#41461d33; border-radius:45px;
+                           backdrop-filter:blur(4.5px)…; box-shadow:inset… }
+           .text-wrapper-2 { font-family:"Figtree-Regular"; font-size:36px;
+                              color:#fff; }                                */
+.send-button {
+  background-color: #41461d33;   /* source: .rectangle-2 background */
+  border-radius: 45px;           /* source: border-radius */
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  font-family: 'Figtree', 'Helvetica', sans-serif;
+  font-weight: 400;              /* source: font-weight:400 */
+  font-size: 2rem;               /* source: 36px */
+  color: #ffffff;
+  letter-spacing: 0;
+  border: none;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.send-button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.send-button:focus-visible {
+  outline: 2px solid #4a90e2;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────
+   Source used fixed px for a 1440-wide canvas; we scale down gracefully. */
+@media (max-width: 768px) {
+  .logo-title {
+    font-size: 3.5rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .message-form-section {
+    border-radius: 28px;
+    padding: 2rem 1.25rem 1.75rem;
+  }
+
+  .form-title {
+    font-size: 1.25rem;
+  }
+
+  .send-button {
+    font-size: 1.5rem;
+    padding: 0.5rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-title {
+    font-size: 2.75rem;
+  }
+
+  .message-form-section {
+    border-radius: 20px;
+    padding: 1.5rem 1rem 1.5rem;
+  }
+
+  .form-title {
+    font-size: 1.1rem;
+  }
+
+  .message-textarea {
+    min-height: 180px;
+    font-size: 0.95rem;
+  }
+
+  .send-button {
+    font-size: 1.25rem;
+    padding: 0.5rem 2rem;
+  }
+}

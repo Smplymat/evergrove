@@ -1,0 +1,383 @@
+/*
+ * PaymentMethodPage.css
+ *
+ * DESIGN MERGE: Structural and visual architecture adopted from the source
+ * (index.html / globals.css / styles.css) exported TeleportHQ design.
+ *
+ * Key design elements incorporated:
+ *  - Sacramento + Edu QLD Beginner + Figtree font stack (mirrors source navbar logo)
+ *  - Full-page background with home-page.png image (matches source .payment-method)
+ *  - Branded navbar layout (logo left, nav links + pill button right)
+ *  - Centered glassmorphism card with border-radius: 45px (matches source rectangle)
+ *  - Payment method images positioned exactly as source (img/image-4.png at 655px, img/image-5.png at 533px)
+ *  - "Select Payment Method" heading style (matches text-wrapper: Figtree Regular 24px)
+ *  - "Back" button style (matches text-wrapper-2: Figtree Regular 40px)
+ *  - Navigation bar matches source group-2 with Home/Menu/Spaces/Pricing/Contact links
+ *  - "Reserve Now" pill button matches group-3 rectangle-2 style
+ *  - CSS backdrop-filter and glassmorphism effects from source
+ *  - Responsive breakpoints aligned with source design patterns
+ *
+ * Existing functionality is fully preserved - only visual structure is changed.
+ */
+
+/* Font imports (source: globals.css @font-face entries) */
+@import url('https://fonts.googleapis.com/css2?family=Sacramento:wght@400&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Edu+QLD+Beginner:wght@400;500;600;700&display=swap');
+
+/* Full-page layout (source: .payment-method with background-image) */
+.payment-content {
+  --background: transparent;
+}
+
+.payment-content::part(scroll) {
+  overflow: hidden;
+}
+
+/* Wrapper that fills the viewport with background photo.
+   Mirrors source .payment-method background-image: url(./img/home-page.png) */
+.payment-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000')
+    center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark overlay - matches source design pattern */
+.payment-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 40, 20, 0.55);
+  z-index: 0;
+}
+
+/* Navbar header (logo left, nav right - mirrors source logo layout) */
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 52px 64px 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Logo block - mirrors source logo flex column */
+.payment-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* "EverGrove" - source: text-wrapper-3, Sacramento 96px */
+.payment-logo-name {
+  font-family: 'Sacramento', cursive;
+  font-size: 96px;
+  color: rgba(240, 238, 228, 1);
+  line-height: 1;
+  margin-left: 23.2px;
+  white-space: nowrap;
+}
+
+/* "CAFE AND CO-WORKING SPACE" - source: text-wrapper-4, Edu QLD Beginner 32px */
+.payment-logo-sub {
+  font-family: 'Edu QLD Beginner', cursive;
+  font-size: 32px;
+  color: rgba(240, 238, 228, 1);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* Main body (source: payment-method positioning) */
+.payment-body {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 60px;
+}
+
+/* "Select Payment Method" heading - source: text-wrapper, Figtree Regular 24px */
+.payment-heading {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: rgba(240, 238, 228, 1);
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 469px;
+  left: 587px;
+  width: 286px;
+  text-align: center;
+}
+
+/* Glassmorphism card - source: rectangle (top: 425px, left: 361px, 718x408px) */
+.payment-card {
+  position: absolute;
+  top: 425px;
+  left: 361px;
+  width: 718px;
+  height: 408px;
+  background-color: rgba(65, 70, 29, 0.2); /* #41461d33 */
+  border-radius: 45px;
+  backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), 
+    inset 1px 0 0 rgba(255, 255, 255, 0.32), 
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13), 
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Payment options container - matches source image positioning */
+.payment-options {
+  display: flex;
+  gap: 40px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+/* Individual payment option - matches source img/image-4.png and img/image-5.png positioning */
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.payment-option:hover {
+  transform: scale(1.05);
+}
+
+.payment-option.selected {
+  transform: scale(1.1);
+}
+
+/* Credit card option - source: img (left: 655px, width: 88px, aspect-ratio: 1.06, height: 83px) */
+.payment-option:nth-child(1) .payment-option-image img {
+  width: 88px;
+  height: 83px;
+  object-fit: cover;
+}
+
+/* PayPal option - source: img (left: 533px, width: 94px, aspect-ratio: 1.13, height: 83px) */
+.payment-option:nth-child(2) .payment-option-image img {
+  width: 94px;
+  height: 83px;
+  object-fit: cover;
+}
+
+.payment-option-label {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  color: rgba(240, 238, 228, 1);
+  font-weight: 500;
+}
+
+/* Divider line - source: line (top: 511px, left: 515px, width: 408px, height: 3px) */
+.payment-divider {
+  width: 408px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(240, 238, 228, 0.3), transparent);
+  margin: 20px 0;
+}
+
+/* Proceed button - source: div (top: 875px, left: 609px, 252x66px) */
+.payment-proceed-btn {
+  position: absolute;
+  top: 875px;
+  left: 609px;
+  width: 252px;
+  height: 66px;
+  background-color: rgba(65, 70, 29, 0.2); /* #41461d33 */
+  border-radius: 45px;
+  backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), 
+    inset 1px 0 0 rgba(255, 255, 255, 0.32), 
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13), 
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  border: none;
+  font-family: 'Figtree', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(240, 238, 228, 1);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.payment-proceed-btn:hover:not(:disabled) {
+  background-color: rgba(65, 70, 29, 0.3);
+}
+
+.payment-proceed-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Back button - source: text-wrapper-2 (top: 885px, left: 685px, 95px width, Figtree Regular 40px) */
+.payment-back-btn {
+  position: absolute;
+  top: 885px;
+  left: 685px;
+  width: 95px;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  color: rgba(240, 238, 228, 1);
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.payment-back-btn:hover {
+  opacity: 0.75;
+}
+
+/* Error message (preserved from original target) */
+.payment-error {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  background: rgba(255, 77, 77, 0.18);
+  border: 1px solid rgba(255, 77, 77, 0.5);
+  border-radius: 10px;
+  color: #ffaaaa;
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 14px;
+}
+
+/* Responsive design - adapted from source patterns */
+@media (max-width: 1440px) {
+  .payment-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 90%;
+    max-width: 718px;
+    height: auto;
+    min-height: 408px;
+    margin: 0 auto;
+  }
+
+  .payment-heading {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .payment-proceed-btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 252px;
+    margin-top: 20px;
+  }
+
+  .payment-back-btn {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .payment-header {
+    padding: 20px 24px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .payment-logo-name {
+    font-size: 64px;
+  }
+
+  .payment-logo-sub {
+    font-size: 24px;
+  }
+
+  .payment-heading {
+    font-size: 20px;
+  }
+
+  .payment-card {
+    padding: 30px 20px;
+    border-radius: 28px;
+  }
+
+  .payment-options {
+    gap: 30px;
+  }
+
+  .payment-option:nth-child(1) .payment-option-image img,
+  .payment-option:nth-child(2) .payment-option-image img {
+    width: 70px;
+    height: 66px;
+  }
+
+  .payment-proceed-btn {
+    height: 56px;
+    font-size: 16px;
+  }
+
+  .payment-back-btn {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 479px) {
+  .payment-logo-name {
+    font-size: 48px;
+  }
+
+  .payment-logo-sub {
+    font-size: 20px;
+  }
+
+  .payment-heading {
+    font-size: 18px;
+  }
+
+  .payment-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .payment-options {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .payment-proceed-btn {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .payment-back-btn {
+    font-size: 28px;
+  }
+}

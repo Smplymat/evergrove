@@ -1,0 +1,8 @@
+{
+  "name": "ptproject",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom",
+  "id": "ptproject"
+}

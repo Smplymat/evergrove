@@ -1,0 +1,275 @@
+/**
+ * MenuPage.css
+ *
+ * NEW FILE — styles for MenuPage.tsx.
+ *
+ * Design tokens adopted from source (index.html + style.css):
+ *  - Background: #41461d73 frosted-glass overlay (source: .bg)
+ *  - Hero title: Kavoon-Regular, 128px, color #e1d2a8ed (source: .explore-menu)
+ *  - Section headings: Figtree-SemiBold, 48px, white (source: .FOOD-SNACKS / .text-wrapper-10)
+ *  - Item name: Figtree-SemiBold, 38px, white (source: .text-wrapper-11)
+ *  - Item price: Figtree-Light, 28px, white (source: .text-wrapper-12 / .element)
+ *  - Card layout: flex-column, image on top, name+price below (source: .croissant / .bagel etc.)
+ *  - Backdrop-filter blur(9.5px) on hero overlay (source: .bg)
+ *  - Responsive grid collapses to 2-col → 1-col on smaller screens
+ *
+ * Shared classes (.logo-section, .logo-title, .logo-subtitle, .nav-menu,
+ * .nav-link, .reserve-link) are defined in HomePage.css and inherited
+ * automatically — no duplication needed.
+ */
+
+/* ─── Font declarations (mirrors source globals.css) ─────────────────────── */
+@font-face { font-family: "Kavoon-Regular";       src: local("Kavoon-Regular"); }
+@font-face { font-family: "Figtree-SemiBold";     src: local("Figtree-SemiBold"); }
+@font-face { font-family: "Figtree-Light";        src: local("Figtree-Light"); }
+@font-face { font-family: "Figtree-Regular";      src: local("Figtree-Regular"); }
+@font-face { font-family: "Sacramento-Regular";   src: local("Sacramento-Regular"); }
+@font-face { font-family: "Edu QLD Beginner-Regular"; src: local("Edu QLD Beginner-Regular"); }
+
+/* ─── IonContent background (source: .menu-PNG-editable background) ─────── */
+/* Matches the dark earthy tone used across all pages */
+.menu-page-content {
+  --background: #2e2e2e;
+}
+
+/* ─── Page wrapper ───────────────────────────────────────────────────────── */
+.menu-page-container {
+  min-height: 100vh;
+  background: #2e2e2e;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+/*
+ * Mirrors source .group-wrapper: background-image (home-page.png) with
+ * glassmorphism. Here we use a semi-transparent dark bar consistent with
+ * SpacesPage / PricingPage header treatment.
+ */
+.menu-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ─── Hero banner (source: .main-banner + .bg + .explore-menu) ───────────── */
+.menu-hero {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 5rem;
+  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1920') center/cover no-repeat;
+}
+
+/* Source: .bg — frosted glass overlay over the hero background */
+.menu-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Source: background-color #41461d73, backdrop-filter blur(9.5px) */
+  background-color: rgba(65, 70, 29, 0.45);
+  backdrop-filter: blur(9.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(9.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 6px rgba(0, 0, 0, 0.13),
+    inset -1px 0 6px rgba(0, 0, 0, 0.11);
+}
+
+.menu-hero-text {
+  position: relative; /* above overlay */
+  z-index: 1;
+  max-width: 600px;
+}
+
+/* Source: .explore-menu — Kavoon-Regular, 128px, color #e1d2a8ed, line-height 125px */
+.menu-hero-title {
+  font-family: "Kavoon-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 8rem);
+  color: rgba(225, 210, 168, 0.93);
+  line-height: 1;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Source: .p — Figtree-SemiBold, 28px, white */
+.menu-hero-tagline {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+}
+
+/* Source: .text-wrapper-9 — Figtree-Regular, 28px, white */
+.menu-hero-scroll {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Source: .coffee — decorative image on the right side of the hero */
+.menu-hero-img {
+  position: relative;
+  z-index: 1;
+  width: clamp(200px, 30vw, 420px);
+  height: clamp(200px, 30vw, 420px);
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+/* ─── Menu sections (FOOD & SNACKS / DRINKS) ─────────────────────────────── */
+.menu-section {
+  padding: 3rem 4rem;
+}
+
+/* Source: .FOOD-SNACKS / .text-wrapper-10 — Figtree-SemiBold, 48px, white, centered */
+.menu-section-title {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+  letter-spacing: 0;
+}
+
+/* ─── Item grid ──────────────────────────────────────────────────────────── */
+/*
+ * Source used absolute positioning for each item on a fixed 1440px canvas.
+ * Here we use CSS Grid to achieve the same 3-column visual rhythm responsively,
+ * matching the source's 3-items-per-row layout for food and drinks.
+ */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem 3rem;
+}
+
+/* ─── Item card (source: .croissant / .bagel / .cappuccino etc.) ─────────── */
+/*
+ * Source: flex-column, image on top, itemname block below.
+ * Adopted: same flex-column structure, image aspect-ratio ~1.1–1.2 from source.
+ */
+.menu-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Source: .croissant-2 / .img-3 / .img-4 — object-fit: cover, aspect-ratio ~1 */
+.menu-item-img {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Source: .itemname — flex-column, gap 18px, centered */
+.menu-item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+/* Source: .text-wrapper-11 — Figtree-SemiBold, 38px, white, text-align center */
+.menu-item-name {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: normal;
+}
+
+/* Source: .text-wrapper-12 / .element — Figtree-Light, 28px, white, text-align center */
+.menu-item-price {
+  font-family: "Figtree-Light", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .menu-page-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .menu-hero {
+    padding: 3rem 2rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .menu-hero-img {
+    width: 260px;
+    height: 260px;
+  }
+
+  .menu-section {
+    padding: 2.5rem 2rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-page-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .menu-hero {
+    padding: 2rem 1rem;
+    min-height: 40vh;
+  }
+
+  .menu-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .menu-section {
+    padding: 2rem 1rem;
+  }
+
+  .menu-section-title {
+    font-size: 2rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .menu-item-img {
+    max-width: 100%;
+  }
+}

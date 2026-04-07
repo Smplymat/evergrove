@@ -1,0 +1,419 @@
+.pricing-content {
+  --background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover;
+}
+
+.pricing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.pricing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.logo-section {
+  text-align: left;
+}
+
+.logo-title {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2.5rem;
+  color: white;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.65rem;
+  color: white;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 300;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: opacity 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+}
+
+.nav-link.reserve-link {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+}
+
+.user-icon {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+}
+
+.user-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Carousel Section */
+.carousel-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Side Images */
+.side-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.side-image:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.side-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.space-image-main {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.space-image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pricing-details {
+  color: white;
+  flex: 1;
+}
+
+.pricing-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #E8DCC4;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.pricing-subtitle {
+  font-size: 1.1rem;
+  color: #D8D8D8;
+  margin: 0 0 2rem 0;
+}
+
+.rates-section {
+  margin-bottom: 2rem;
+}
+
+.rates-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1rem 0;
+}
+
+.rates-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rates-list li {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.rates-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #E8DCC4;
+  font-size: 1.5rem;
+}
+
+.details-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-hover: rgba(255, 255, 255, 0.3);
+  --color: white;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: white;
+  --border-radius: 25px;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+  --padding-top: 0.7rem;
+  --padding-bottom: 0.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+}
+
+/* Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.indicator.active {
+  background: white;
+  width: 40px;
+  border-radius: 6px;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Reserve Section */
+.reserve-section {
+  text-align: center;
+}
+
+.reserve-now-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-hover: rgba(255, 255, 255, 0.3);
+  --color: white;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: white;
+  --border-radius: 30px;
+  --padding-start: 3rem;
+  --padding-end: 3rem;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 2px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .side-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .main-content {
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .space-image-main {
+    width: 220px;
+    height: 220px;
+  }
+
+  .pricing-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pricing-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .side-image {
+    display: none;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .space-image-main {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo-section {
+    text-align: center;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .carousel-section {
+    padding: 1rem;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .pricing-title {
+    font-size: 1.8rem;
+  }
+
+  .space-image-main {
+    width: 200px;
+    height: 200px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .left-arrow {
+    left: -10px;
+  }
+
+  .right-arrow {
+    right: -10px;
+  }
+}

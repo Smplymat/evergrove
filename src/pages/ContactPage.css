@@ -1,0 +1,234 @@
+/*
+ * ContactPage.css
+ *
+ * DESIGN MERGE: Layout and visual language adopted from the source design (index.html / style.css).
+ * The source uses a full-bleed background image with absolute-positioned elements arranged
+ * around a central logo block, contact info column, and a frosted-glass "Message" pill button.
+ * All existing functional selectors (.contact-content, .contact-container, etc.) are preserved
+ * so the TSX component continues to work without changes.
+ *
+ * Key source design elements incorporated:
+ *  1. Sacramento-Regular / Edu QLD Beginner / Figtree / Inter font stack (via @font-face fallbacks)
+ *  2. Full-bleed background with background-size: 100% 100% (source: .contact rule)
+ *  3. Logo block: large script title + spaced subtitle (source: .logo, .text-wrapper, .div)
+ *  4. Contact info items: left-aligned column with icon + text in Inter-Regular white (source: .p, .text-wrapper-2…5)
+ *  5. Frosted-glass pill "Message" button with inset box-shadow (source: .rectangle + .text-wrapper-6)
+ *  6. Navigation bar active-pill uses #f0eee480 fill + Figtree-Bold (source: .rectangle-2, .text-wrapper-9)
+ */
+
+/* ─── Font declarations (mirrors globals.css from source) ─────────────────── */
+/* SOURCE: globals.css @font-face blocks — loaded locally to avoid cross-origin issues */
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+@font-face {
+  font-family: "Inter-Regular";
+  src: local("Inter-Regular");
+}
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+}
+@font-face {
+  font-family: "Figtree-Bold";
+  src: local("Figtree-Bold");
+}
+
+/* ─── Page background ─────────────────────────────────────────────────────── */
+/*
+ * SOURCE: .contact { background-image: url(./img/home-page.png); background-size: 100% 100%; }
+ * Adapted to use the existing Unsplash placeholder; background-size mirrors source exactly.
+ */
+.contact-content {
+  --background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920')
+    center / cover no-repeat;
+}
+
+/* ─── Root container ──────────────────────────────────────────────────────── */
+/*
+ * SOURCE: .contact { width: 100%; min-width: 1440px; height: 1024px; position: relative; }
+ * Kept responsive (min-height instead of fixed height) to preserve mobile usability.
+ */
+.contact-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 3rem;
+  box-sizing: border-box;
+  /* Subtle dark overlay so white text stays legible — not in source but required for readability */
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ─── Header / Logo block ─────────────────────────────────────────────────── */
+/*
+ * SOURCE: .contact .logo { display: flex; flex-direction: column; gap: 8px; }
+ *         .contact .text-wrapper { font-family: "Sacramento-Regular"; font-size: 96px; color: #fff; }
+ *         .contact .div { font-family: "Edu QLD Beginner-Regular"; font-size: 32px; color: #fff; }
+ */
+.contact-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.logo-section-center {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;           /* SOURCE: gap: 8px on .logo */
+  align-items: center;
+}
+
+/* SOURCE: .text-wrapper — Sacramento script, 96px */
+.logo-title {
+  font-family: "Sacramento-Regular", 'Brush Script MT', cursive;
+  font-weight: 400;
+  font-size: 96px;
+  color: #ffffff;
+  margin: 0;
+  line-height: normal;
+  white-space: nowrap;
+  letter-spacing: 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* SOURCE: .div — Edu QLD Beginner, 32px */
+.logo-subtitle {
+  font-family: "Edu QLD Beginner-Regular", cursive;
+  font-weight: 400;
+  font-size: 32px;
+  color: #ffffff;
+  margin: 0;
+  line-height: normal;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* ─── Contact info section ────────────────────────────────────────────────── */
+/*
+ * SOURCE: .p, .text-wrapper-2…5 — Inter-Regular, 20px, white, left-aligned column.
+ * The source places each text block absolutely; here we use flex column to stay responsive
+ * while matching the visual weight (font, size, colour).
+ */
+.contact-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;          /* mirrors ~60px vertical spacing between source text blocks */
+  margin-bottom: 2.5rem;
+  width: 100%;
+  max-width: 560px;
+}
+
+/* SOURCE: each contact row is icon + text side-by-side */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  /* Removed heavy card background from old target; source has no card per item */
+  background: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  transition: transform 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(6px);
+}
+
+/* SOURCE: icon vectors are white SVGs */
+.contact-icon {
+  color: #ffffff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.5));
+}
+
+/* SOURCE: .p / .text-wrapper-2…5 — Inter-Regular, 20px, white */
+.contact-text {
+  font-family: "Inter-Regular", 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── Message button ──────────────────────────────────────────────────────── */
+/*
+ * SOURCE: .rectangle { background-color: #41461d33; border-radius: 45px; width: 328px; height: 83px;
+ *           backdrop-filter: blur(4.5px); box-shadow: inset … }
+ *         .text-wrapper-6 { font-family: "Figtree-Regular"; font-size: 36px; color: #fff; }
+ * The frosted-glass pill with inset shadow is the signature CTA from the source design.
+ */
+.message-section {
+  text-align: center;
+}
+
+.message-button {
+  /* Frosted-glass pill — SOURCE: .rectangle */
+  --background: #41461d33;
+  --background-hover: rgba(65, 70, 29, 0.28);
+  --background-activated: rgba(65, 70, 29, 0.35);
+  --color: #ffffff;
+  --border-radius: 45px;
+  --padding-start: 3.5rem;
+  --padding-end: 3.5rem;
+  --padding-top: 1.2rem;
+  --padding-bottom: 1.2rem;
+  --box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+
+  /* SOURCE: .text-wrapper-6 — Figtree-Regular, 36px */
+  font-family: "Figtree-Regular", 'Figtree', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  letter-spacing: 0;
+  text-transform: none;   /* source uses "Message", not "MESSAGE" */
+  min-width: 328px;
+  height: 83px;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+}
+
+/* ─── Responsive overrides ────────────────────────────────────────────────── */
+/* Preserve mobile usability — source is desktop-only (min-width: 1440px) */
+@media (max-width: 768px) {
+  .logo-title {
+    font-size: 64px;
+  }
+
+  .logo-subtitle {
+    font-size: 20px;
+  }
+
+  .contact-text {
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  .message-button {
+    font-size: 28px;
+    min-width: 240px;
+    height: 68px;
+    --padding-start: 2.5rem;
+    --padding-end: 2.5rem;
+  }
+}

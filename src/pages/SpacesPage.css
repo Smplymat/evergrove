@@ -1,0 +1,407 @@
+/* 
+ * SpacesPage.css - Enhanced with source design architecture integration
+ * 
+ * Design elements integrated from source:
+ * 
+ * 1. FONT FAMILIES - Direct integration from source global.css:
+ *    - Kavoon-Regular: Used for hero titles (brand personality)
+ *    - Figtree-Regular: Used for body text and navigation
+ *    - Figtree-SemiBold: Used for space titles and descriptions
+ *    - Figtree-ExtraBold: Used for active navigation states
+ *    - Sacramento-Regular: Used for main logo (elegant script)
+ *    - Edu QLD Beginner-Regular: Used for logo subtitle
+ * 
+ * 2. COLOR SCHEME - Earth tone palette from source:
+ *    - #f0eee4: Primary text color (warm off-white)
+ *    - #41461d: Button backgrounds (deep earth green)
+ *    - #e1d2a826: Frame overlays (subtle tropical wash)
+ *    - #ffffff: High contrast text elements
+ *    - Preserved original #3a3a3a for base background
+ * 
+ * 3. BACKDROP FILTER EFFECTS - Glass morphism from source:
+ *    - blur(6.0px) with saturation/hue adjustments for frames
+ *    - blur(4.5px) for buttons and navigation elements
+ *    - Inset box shadows for depth and glass effect
+ * 
+ * 4. LAYOUT STRUCTURE - Frame-based architecture:
+ *    - Added spaces-frame container with backdrop effects
+ *    - Maintained responsive grid system from target
+ *    - Enhanced hero section with overlay effects
+ * 
+ * 5. TYPOGRAPHY HIERARCHY - Source font sizing and weights:
+ *    - Hero titles: 5rem Kavoon-Regular with text shadow
+ *    - Space titles: 2.2rem Figtree-SemiBold
+ *    - Body text: 1.1rem Figtree variants
+ *    - Navigation: 1.1rem Figtree-Regular with shadows
+ * 
+ * 6. BUTTON STYLING - Source design with backdrop effects:
+ *    - 45px border radius (more rounded than original)
+ *    - #41461d33 background with backdrop blur
+ *    - Inset shadows for glass morphism effect
+ *    - Preserved Ionic button functionality
+ */
+
+/* Font Families - Integrated from source design */
+@font-face {
+  font-family: "Kavoon-Regular";
+  src: local("Kavoon-Regular");
+}
+
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+}
+
+@font-face {
+  font-family: "Figtree-SemiBold";
+  src: local("Figtree-SemiBold");
+}
+
+@font-face {
+  font-family: "Figtree-ExtraBold";
+  src: local("Figtree-ExtraBold");
+}
+
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+
+.spaces-content {
+  --background: #3a3a3a;
+}
+
+.spaces-container {
+  min-height: 100vh;
+  background: #3a3a3a;
+  position: relative;
+  width: 100%;
+  min-width: 1440px;
+}
+
+/* Header Styles */
+.spaces-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-section {
+  text-align: left;
+}
+
+.logo-title {
+  font-family: "Sacramento-Regular", cursive;
+  font-size: 3.5rem;
+  color: #f0eee4;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 0px 4px 4px #00000040;
+}
+
+.logo-subtitle {
+  font-family: "Edu QLD Beginner-Regular", Helvetica;
+  font-size: 0.9rem;
+  color: #f0eee4;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: "Figtree-Regular", Helvetica;
+  color: #f0eee4;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: opacity 0.3s;
+  position: relative;
+  text-shadow: 0px 4px 4px #00000040;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.active {
+  font-family: "Figtree-ExtraBold", Helvetica;
+  font-weight: 800;
+}
+
+.nav-link.reserve-link {
+  background: #f0eee480;
+  backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.32), inset 0 -1px 3px rgba(0, 0, 0, 0.13), inset -1px 0 3px rgba(0, 0, 0, 0.11);
+}
+
+/* Hero Section - Enhanced with source design */
+.spaces-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Frame overlay for backdrop effect - Integrated from source */
+.spaces-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e1d2a826;
+  backdrop-filter: blur(6.0px) brightness(100.0%) saturate(93.0%) hue-rotate(-2.6deg);
+  -webkit-backdrop-filter: blur(6.0px) brightness(100.0%) saturate(93.0%) hue-rotate(-2.6deg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.32), inset 0 -1px 4px rgba(0, 0, 0, 0.13), inset -1px 0 4px rgba(0, 0, 0, 0.11);
+  z-index: 1;
+}
+
+.spaces-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.spaces-hero-title {
+  font-family: "Kavoon-Regular", Helvetica;
+  font-size: 5rem;
+  font-weight: 400;
+  color: #f0eee4;
+  margin: 0 0 1rem 0;
+  text-shadow: 0px 4px 4px #0000004c;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.spaces-hero-subtitle {
+  font-family: "Figtree-Regular", Helvetica;
+  font-size: 1.2rem;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Spaces List - Enhanced with source frame design */
+.spaces-list {
+  padding: 3rem 0;
+  position: relative;
+}
+
+/* Frame container for spaces - Integrated from source design */
+.spaces-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #e1d2a826;
+  backdrop-filter: blur(6.0px) brightness(100.0%) saturate(93.0%) hue-rotate(-2.6deg);
+  -webkit-backdrop-filter: blur(6.0px) brightness(100.0%) saturate(93.0%) hue-rotate(-2.6deg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.32), inset 0 -1px 4px rgba(0, 0, 0, 0.13), inset -1px 0 4px rgba(0, 0, 0, 0.11);
+}
+
+.space-item {
+  display: flex;
+  gap: 3rem;
+  padding: 3rem 4rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.space-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.space-image {
+  flex: 1;
+  max-width: 400px;
+}
+
+.space-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.space-details {
+  flex: 1;
+  color: white;
+}
+
+.space-title {
+  font-family: "Figtree-SemiBold", Helvetica;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #f0eee4;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.space-tagline {
+  font-family: "Figtree-SemiBold", Helvetica;
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+}
+
+.space-description {
+  font-family: "Figtree-SemiBold", Helvetica;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+}
+
+.space-capacity {
+  font-family: "Figtree-SemiBold", Helvetica;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.space-info {
+  font-family: "Figtree-SemiBold", Helvetica;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.space-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.space-features li {
+  font-family: "Figtree-Regular", Helvetica;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-weight: 400;
+}
+
+.space-features li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #8B5A2B;
+  font-size: 1.2rem;
+}
+
+.reserve-button {
+  --background: #41461d33;
+  --background-hover: #41461d44;
+  --color: #ffffff;
+  --border-radius: 45px;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  font-family: "Figtree-Regular", Helvetica;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100.0%) saturate(105.0%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.32), inset 0 -1px 3px rgba(0, 0, 0, 0.13), inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  min-height: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .spaces-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .space-item,
+  .space-item.reverse {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .space-image {
+    max-width: 100%;
+  }
+
+  .spaces-hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .spaces-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo-section {
+    text-align: center;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .spaces-hero {
+    padding: 3rem 1rem;
+    min-height: 30vh;
+  }
+
+  .spaces-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .space-item {
+    padding: 2rem 1rem;
+  }
+
+  .space-title {
+    font-size: 1.5rem;
+  }
+
+  .space-image img {
+    height: 250px;
+  }
+}

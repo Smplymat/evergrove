@@ -1,0 +1,111 @@
+/* SignInPage.css */
+
+/* Full-screen background with glassmorphism panel */
+.signin-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111111; /* solid dark background */
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.signin-panel {
+  display: flex;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+}
+
+.left-section, .right-section {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.8);
+  font-size: 1rem;
+}
+
+.forgot-link {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.forgot-link a {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.sign-in-button {
+  --background: rgba(255,255,255,0.9);
+  --color: #000;
+}
+
+.divider {
+  width: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+.social-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.facebook-button {
+  --background: #3b5998;
+  --color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.google-button {
+  --background: #db4437;
+  --color: #fff;
+  margin-bottom: 1rem;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: auto;
+  color: #fff;
+}
+
+.signup-link a {
+  color: #fff;
+  text-decoration: underline;
+}

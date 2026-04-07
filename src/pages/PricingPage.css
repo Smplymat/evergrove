@@ -1,0 +1,571 @@
+/*
+ * PricingPage.css
+ *
+ * Design integration from source (index.html + style.css + globals.css):
+ *
+ *  1. Font declarations – Kavoon-Regular, Figtree variants, Sacramento-Regular,
+ *     Edu QLD Beginner-Regular (mirrors globals.css @font-face blocks).
+ *  2. Background – full-bleed image with 100% cover (source .pricing).
+ *  3. Space card (.pricing-card) – dark semi-transparent panel (#0000005e),
+ *     border-radius 45px, backdrop-filter blur (source .div / .the-banyan-hall).
+ *  4. Typography – Kavoon-Regular titles (#e1d2a8ed), Figtree-Regular body
+ *     (#f0eee4), Figtree-ExtraBold CTAs (#ffffff), Figtree-Italic notes.
+ *  5. "RESERVE NOW!" button – olive glass pill (source .rectangle: #41461d33,
+ *     border-radius 45px, inset box-shadow, backdrop-filter).
+ *  6. Active nav pill – #f0eee480 background (source .rectangle-3).
+ *  7. Logo – Sacramento-Regular 90px / Edu QLD Beginner-Regular 25px.
+ *
+ * All existing class names used by PricingPage.tsx are preserved so no
+ * breaking changes are introduced.
+ */
+
+/* -------------------------------------------------------------------------
+   Font declarations – mirrors globals.css from source design
+   (local() references so no external download is required)
+------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Kavoon-Regular";
+  src: local("Kavoon-Regular");
+}
+@font-face {
+  font-family: "Figtree-ExtraBold";
+  src: local("Figtree-ExtraBold");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Figtree-Italic";
+  src: local("Figtree-Italic");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+
+/* -------------------------------------------------------------------------
+   Page background – source .pricing: background-image full-bleed
+------------------------------------------------------------------------- */
+.pricing-content {
+  /* Fallback gradient keeps readability if the image is unavailable */
+  --background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover no-repeat;
+}
+
+.pricing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------------------------------------------------
+   Header – logo uses Sacramento-Regular + Edu QLD Beginner-Regular (source
+   .text-wrapper-16 / .text-wrapper-17); nav links use Figtree-Regular #f0eee4
+   (source .text-wrapper-18 etc.); active pill uses #f0eee480 (source .rectangle-3)
+------------------------------------------------------------------------- */
+.pricing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  position: relative;
+  z-index: 10;
+  /* Subtle glass strip so header is readable over any background */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Logo – Sacramento-Regular (source .text-wrapper-16) */
+.logo-section {
+  text-align: left;
+}
+
+.logo-title {
+  /* Source: font-family "Sacramento-Regular", font-size 90px, color #f0eee4 */
+  font-family: "Sacramento-Regular", "Brush Script MT", cursive;
+  font-size: clamp(2.5rem, 5vw, 5.6rem); /* scales down on small screens */
+  color: #f0eee4;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  /* Source: font-family "Edu QLD Beginner-Regular", font-size 25px, color #f0eee4 */
+  font-family: "Edu QLD Beginner-Regular", sans-serif;
+  font-size: clamp(0.6rem, 1.5vw, 1.56rem);
+  color: #f0eee4;
+  letter-spacing: 1px;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Nav – Figtree-Regular, #f0eee4, text-shadow (source .text-wrapper-18 etc.) */
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #f0eee4;
+  text-decoration: none;
+  font-size: clamp(0.85rem, 1.4vw, 1.75rem);
+  text-shadow: 0px 4px 4px #00000040; /* source text-shadow */
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.75;
+}
+
+/*
+ * Active nav pill – source .rectangle-3:
+ *   background-color #f0eee480, border-radius 50px,
+ *   backdrop-filter blur(4.5px), inset box-shadow
+ */
+.nav-link.active {
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  background-color: #f0eee480;
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+}
+
+/* "Reserve Now" nav link – same glass pill style */
+.nav-link.reserve-link {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* User icon button – preserved from original target */
+.user-icon {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #f0eee4;
+  transition: background 0.2s;
+}
+
+.user-icon:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* -------------------------------------------------------------------------
+   Carousel section – layout unchanged from original target
+------------------------------------------------------------------------- */
+.carousel-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Side peek images – unchanged */
+.side-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.side-image:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.side-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------
+   Main space card – redesigned to match source .div / .the-banyan-hall:
+     background-color #0000005e, border-radius 45px, overflow hidden,
+     flex row with circular image left + text right.
+------------------------------------------------------------------------- */
+.pricing-card {
+  /* Source: background-color #0000005e, border-radius 45px */
+  background-color: #0000005e;
+  border-radius: 45px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem 3rem;
+  /* Subtle inset glass border matching source .rectangle-2 */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 1px rgba(0,0,0,0.13),
+    inset -1px 0 1px rgba(0,0,0,0.11);
+  min-width: 0;
+  flex: 1;
+}
+
+/* Circular image – mirrors source .ellipse (449×444 px, absolute in source) */
+.space-image-main {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.space-image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------
+   Pricing text block
+------------------------------------------------------------------------- */
+.pricing-details {
+  color: #f0eee4;
+  flex: 1;
+  min-width: 0;
+}
+
+/*
+ * Space title – source .text-wrapper-2 / -5 / -7 / -10 / -13:
+ *   font-family "Kavoon-Regular", color #e1d2a8ed, font-size 48px
+ */
+.pricing-title {
+  font-family: "Kavoon-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #e1d2a8ed;
+  font-size: clamp(1.6rem, 3vw, 3rem);
+  margin: 0 0 0.4rem 0;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/*
+ * Subtitle – source .text-wrapper-3 / .seminar-workshop / .text-wrapper-8 etc.:
+ *   font-family "Figtree-Regular", color #f0eee4, font-size 28px
+ */
+.pricing-subtitle {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #f0eee4;
+  font-size: clamp(0.9rem, 1.6vw, 1.75rem);
+  margin: 0 0 1.5rem 0;
+}
+
+/* Rates block */
+.rates-section {
+  margin-bottom: 1.5rem;
+}
+
+/*
+ * "Rates:" / "Rates (Per Person):" label –
+ *   Figtree-Regular, #f0eee4, font-size 28px (source inline in .rates-hour etc.)
+ */
+.rates-label {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #f0eee4;
+  font-size: clamp(0.9rem, 1.6vw, 1.75rem);
+  margin: 0 0 0.4rem 0;
+}
+
+/*
+ * Rate bullet list – Figtree-Regular, #f0eee4 (source .rates-hour / .p etc.)
+ */
+.rates-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+}
+
+.rates-list li {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #f0eee4;
+  font-size: clamp(0.85rem, 1.5vw, 1.75rem);
+  margin-bottom: 0.3rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.rates-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #e1d2a8ed;
+}
+
+/*
+ * Italic note – source .free-brewed-coffee / .text-wrapper-14:
+ *   font-family "Figtree-Italic", font-style italic, color #ffffff
+ */
+.space-note {
+  font-family: "Figtree-Italic", Helvetica, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(0.8rem, 1.4vw, 1.75rem);
+  margin: 0.5rem 0 0 0;
+}
+
+/*
+ * "See Details" button – source .text-wrapper-4 / -6 / -9 / -12 / -15:
+ *   font-family "Figtree-ExtraBold", font-weight 800, color #ffffff, font-size 28px
+ *   Rendered as a plain text-style button (no background) matching source appearance.
+ */
+.details-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: clamp(0.9rem, 1.6vw, 1.75rem);
+  letter-spacing: 0;
+  line-height: normal;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.details-btn:hover {
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------------
+   Navigation arrows – unchanged from original target
+------------------------------------------------------------------------- */
+.carousel-arrow {
+  position: absolute;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #f0eee4;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1);
+}
+
+.left-arrow  { left: 0; }
+.right-arrow { right: 0; }
+
+/* -------------------------------------------------------------------------
+   Dot indicators – unchanged from original target
+------------------------------------------------------------------------- */
+.carousel-indicators {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.indicator.active {
+  background: #f0eee4;
+  width: 40px;
+  border-radius: 6px;
+}
+
+.indicator:hover {
+  background: rgba(255,255,255,0.7);
+}
+
+/* -------------------------------------------------------------------------
+   "RESERVE NOW!" button – source .rectangle + .text-wrapper:
+     background #41461d33, border-radius 45px, backdrop-filter blur(4.5px),
+     inset box-shadow; text Figtree-ExtraBold 800 28px #ffffff
+------------------------------------------------------------------------- */
+.reserve-section {
+  text-align: center;
+}
+
+.reserve-now-button {
+  /* Source .rectangle: background-color #41461d33, border-radius 45px */
+  background-color: #41461d33;
+  border-radius: 45px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  /* Source backdrop-filter */
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  /* Source inset box-shadow */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+  /* Source .text-wrapper: Figtree-ExtraBold 800 28px #ffffff */
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: clamp(1rem, 1.8vw, 1.75rem);
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.reserve-now-button:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+/* -------------------------------------------------------------------------
+   Responsive overrides – preserve original breakpoint behaviour
+------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .side-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .pricing-card {
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .space-image-main {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pricing-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .side-image {
+    display: none;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pricing-card {
+    flex-direction: column;
+    text-align: center;
+    border-radius: 30px;
+  }
+
+  .space-image-main {
+    width: 250px;
+    height: 250px;
+  }
+
+  .rates-list li {
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo-section {
+    text-align: center;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .carousel-section {
+    padding: 1rem;
+  }
+
+  .pricing-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+
+  .space-image-main {
+    width: 200px;
+    height: 200px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .left-arrow  { left: -10px; }
+  .right-arrow { right: -10px; }
+}

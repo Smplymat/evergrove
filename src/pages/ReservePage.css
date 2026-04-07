@@ -1,0 +1,509 @@
+/*
+ * ReservePage.css
+ *
+ * Design merged from source (EverGrove static HTML/CSS mockup — index.html / style.css).
+ * Source architecture applied:
+ *   - Full-viewport background image with background-size: 100% 100% (source: .reservation)
+ *   - Glassmorphism form card via backdrop-filter + specific inset box-shadow
+ *     (source: .reservation .rectangle — #41461d33, blur(4.5px), brightness/saturate)
+ *   - Sacramento-Regular logo wordmark at 96px (source: .text-wrapper-12)
+ *   - Edu QLD Beginner-Regular subtitle at 32px (source: .text-wrapper-13)
+ *   - Figtree-Regular for all form labels and nav items (source: globals.css)
+ *   - Figtree-ExtraBold for the active "Reserve Now" nav pill (source: .text-wrapper-17)
+ *   - Input fields as #ffffffa6 rounded pills, border-radius: 50px (source: .rectangle-2/.rectangle-4)
+ *   - RESERVE button as large Figtree-Regular 40px white text (source: .text-wrapper-11)
+ *   - Active nav pill: #f0eee480 frosted glass (source: .rectangle-5)
+ *   - Thin horizontal divider below form title (source: .line / .line-2)
+ * All existing class names, routing, auth logic, and IonPage structure are preserved.
+ */
+
+/* ─── Font declarations (from source globals.css) ───────────────────────── */
+/* Sacramento-Regular: logo wordmark (source: .text-wrapper-12) */
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+/* Edu QLD Beginner-Regular: logo subtitle (source: .text-wrapper-13) */
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+/* Figtree-Regular: nav items, form labels, RESERVE text (source: globals.css) */
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+}
+/* Figtree-ExtraBold: active nav pill label (source: .text-wrapper-17) */
+@font-face {
+  font-family: "Figtree-ExtraBold";
+  src: local("Figtree-ExtraBold");
+}
+
+/* ─── Page background (source: .reservation) ────────────────────────────── */
+/*
+ * Source used background-size: 100% 100% on a fixed 1440×1024 canvas.
+ * Target keeps the responsive approach but adopts the same full-bleed fill intent.
+ */
+.reserve-content {
+  --background: transparent;
+}
+
+.reserve-content::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  /* Source: background-image: url(./img/home-page.png); background-size: 100% 100% */
+  background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover no-repeat;
+  z-index: -1;
+}
+
+/* ─── Page layout container ──────────────────────────────────────────────── */
+.reserve-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 3rem;
+}
+
+/* ─── Header (source: .reservation .logo + .group-11) ───────────────────── */
+/*
+ * Source positioned the logo at top:107px, left:515px and the nav at top:338px.
+ * Target keeps flex layout but adopts the same transparent, no-border style.
+ */
+.reserve-header {
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Logo block (source: .reservation .logo) ───────────────────────────── */
+.logo-section-center {
+  display: inline-block;
+}
+
+/*
+ * Source: font-family Sacramento-Regular, 96px, color #ffffff (source: .text-wrapper-12)
+ */
+.logo-title {
+  font-family: "Sacramento-Regular", 'Brush Script MT', cursive;
+  font-size: 96px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/*
+ * Source: font-family Edu QLD Beginner-Regular, 32px, color #ffffff (source: .text-wrapper-13)
+ */
+.logo-subtitle {
+  font-family: "Edu QLD Beginner-Regular", sans-serif;
+  font-size: 32px;
+  color: #ffffff;
+  letter-spacing: 0;
+  margin: 0;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ─── Search bar row (source: .reservation .group-10 / .line-2) ─────────── */
+/*
+ * Source placed a magnifying-glass icon and a thin horizontal line (line-2: 426px wide, 1px).
+ * Target keeps the same visual intent with a flex row.
+ */
+.reserve-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+}
+
+.search-icon {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Source: .reservation .line-2 — 426px wide, 1px, white */
+.search-line {
+  width: 426px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ─── Nav menu (source: .reservation .group-11) ─────────────────────────── */
+/*
+ * Source: Figtree-Regular, 28px, color #ffffff for inactive items.
+ * Active "Reserve Now" uses Figtree-ExtraBold inside a frosted pill (.rectangle-5).
+ */
+.reserve-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* Source: .text-wrapper-14/15/16/18/19 — Figtree-Regular, reduced to 1rem for compact nav */
+.nav-link {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover { opacity: 0.75; }
+
+/*
+ * Source: .reservation .rectangle-5 — active nav pill
+ * background-color: #f0eee480, border-radius: 50px,
+ * backdrop-filter: blur(4.5px) brightness(100%) saturate(105%),
+ * inset box-shadow matching the glassmorphism system.
+ */
+.nav-link.active {
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  background-color: rgba(240, 238, 228, 0.5); /* source: #f0eee480 */
+  border-radius: 50px;
+  padding: 3px 14px;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+}
+
+/* User icon button (source: .reservation .group-9 social icons area) */
+.user-icon {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s;
+}
+
+.user-icon:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* ─── Reservation form card (source: .reservation .rectangle) ───────────── */
+/*
+ * Source: background-color #41461d33, border-radius 45px,
+ * backdrop-filter blur(4.5px) brightness(100%) saturate(105%),
+ * inset box-shadow system (glassmorphism).
+ * Width 718px, height 476px in source — target keeps responsive max-width.
+ */
+.reservation-form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  background-color: rgba(65, 70, 29, 0.2); /* source: #41461d33 */
+  border-radius: 45px;                      /* source: border-radius 45px */
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  padding: 2.5rem 2rem;
+  margin-top: 1rem;
+}
+
+/* ─── Form title (source: .reservation .text-wrapper) ───────────────────── */
+/*
+ * Source: Figtree-Regular, 24px, color #ffffff, positioned above the divider line.
+ */
+.form-title {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* ─── Divider line (source: .reservation .line — 408px wide, 3px) ────────── */
+/*
+ * Source: img/line-5.svg — a 408px × 3px horizontal rule below the title.
+ */
+.form-divider {
+  width: 408px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+  margin-bottom: 1.8rem;
+}
+
+/* ─── Form fields container ──────────────────────────────────────────────── */
+.form-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ─── Select / input fields (source: .rectangle-2 / .rectangle-3 / .rectangle-4) ── */
+/*
+ * Source: background-color #ffffffa6, border-radius 50px.
+ * .rectangle-3 (service): 300×30px; .rectangle-4 (name/phone/email): 246×18px.
+ * .rectangle-2 (date/pay): 136×18px.
+ * Target unifies these into one pill style, preserving the source's translucent white.
+ */
+.reserve-select,
+.reserve-input-field {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.65); /* source: #ffffffa6 */
+  color: #000000;                               /* source: color #000000 on labels */
+  border: none;
+  border-radius: 50px;                          /* source: border-radius 50px */
+  padding: 0.75rem 1.4rem;
+  font-family: "Figtree-Regular", Helvetica, sans-serif; /* source: Figtree-Regular */
+  font-size: 13px;                              /* source: font-size 13px */
+  font-weight: 400;
+  letter-spacing: 0;
+  outline: none;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.reserve-select { cursor: pointer; }
+.reserve-input-field::placeholder { color: #555; }
+
+/* ─── Date row ───────────────────────────────────────────────────────────── */
+/*
+ * Source: .group-2 — date field with a calendar icon (group.png) to the right.
+ * Target keeps the flex row with an emoji icon as a functional equivalent.
+ */
+.date-row,
+.payment-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.field-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.date-field {
+  flex: 1;
+  color: #555;
+}
+
+/* ─── Payment radio group (source: .group-4 / .group-5) ─────────────────── */
+/*
+ * Source: two rows — "Pay Online" (.text-wrapper-6) and "Pay Cash" (.text-wrapper-7),
+ * each inside a .rectangle-2 pill with an ellipse radio indicator.
+ * Target keeps the radio input approach, styled to match the source pill appearance.
+ */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Source: Figtree-Regular, 13px, color #000000 */
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #ffffff;
+  cursor: pointer;
+  letter-spacing: 0;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: white;
+  width: 16px;
+  height: 16px;
+}
+
+/* ─── RESERVE button (source: .reservation .div + .text-wrapper-11) ─────── */
+/*
+ * Source: .div — frosted glass pill (252×66px, #41461d33, border-radius 45px,
+ *   same inset box-shadow as the main card).
+ * Source: .text-wrapper-11 — Figtree-Regular, 40px, color #ffffff, "RESERVE".
+ */
+.reserve-submit-button {
+  background-color: rgba(65, 70, 29, 0.2); /* source: #41461d33 */
+  color: #ffffff;
+  border: none;
+  border-radius: 45px;                     /* source: border-radius 45px */
+  padding: 0.85rem 4rem;
+  font-family: "Figtree-Regular", Helvetica, sans-serif; /* source: Figtree-Regular */
+  font-size: 40px;                         /* source: font-size 40px */
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  transition: background-color 0.2s;
+  margin-top: 0.8rem;
+}
+
+.reserve-submit-button:hover {
+  background-color: rgba(65, 70, 29, 0.35);
+}
+
+/* ─── Back button (payment step) ─────────────────────────────────────────── */
+/*
+ * Not in source (source has no back step), but kept from target for functionality.
+ * Styled to match the source's frosted-glass pill system.
+ */
+.reserve-back-button {
+  background-color: rgba(65, 70, 29, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 45px;
+  padding: 0.7rem 3rem;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  margin-top: 1.5rem;
+  transition: background-color 0.2s;
+}
+
+.reserve-back-button:hover {
+  background-color: rgba(65, 70, 29, 0.3);
+}
+
+/* ─── Payment method buttons (target-only step, not in source) ───────────── */
+/*
+ * Styled to complement the source's glassmorphism system while preserving
+ * the existing payment-step functionality.
+ */
+.payment-methods {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.payment-method-btn {
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 0;
+  gap: 2px;
+}
+
+.payment-method-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.gcash-btn { background: #007aff; }
+.maya-btn  { background: #00b14f; }
+.bpi-btn   { background: white; }
+
+.pm-label {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.gcash-label { color: white; }
+.maya-label  { color: white; font-style: italic; font-size: 1.8rem; }
+.bpi-label   { font-size: 1.3rem; }
+
+.pm-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.gcash-btn .pm-name { color: white; }
+.maya-btn  .pm-name { color: white; }
+.bpi-text  { color: #c00; font-size: 0.8rem; }
+
+/* ─── Confirmation section ───────────────────────────────────────────────── */
+/*
+ * Not in source (source has no confirmation step), but kept for functionality.
+ * Typography updated to Figtree-Regular to match source font system.
+ */
+.confirmation-section {
+  text-align: center;
+}
+
+/* Source: Figtree-Regular, white — applied to confirmation title */
+.confirmation-title {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.confirmation-text {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px; /* source: 13px for body text */
+  margin: 0 0 1.5rem;
+  letter-spacing: 0;
+}
+
+.confirm-btn {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  padding: 0.85rem 3.5rem;
+}
+
+/* ─── Responsive overrides ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .logo-title { font-size: 60px; }
+  .logo-subtitle { font-size: 20px; }
+  .search-line { width: 200px; }
+  .form-divider { width: 80%; }
+  .reserve-submit-button { font-size: 28px; padding: 0.75rem 2.5rem; }
+  .reservation-form-section { padding: 2rem 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .logo-title { font-size: 48px; }
+  .logo-subtitle { font-size: 16px; }
+  .nav-link { font-size: 18px; }
+  .reserve-submit-button { font-size: 22px; padding: 0.7rem 2rem; }
+}

@@ -1,0 +1,569 @@
+/**
+ * AdminReservation.css
+ *
+ * Enhanced with modern design architecture from AdminMenuPage.css source.
+ * Design patterns incorporated:
+ *   - Responsive clamp() functions for fluid typography and spacing
+ *   - Modern glassmorphism effects with backdrop-filter and consistent shadows
+ *   - Flexible flexbox layouts replacing rigid absolute positioning
+ *   - Mobile-first responsive design with proper breakpoints
+ *   - Component-based structure with semantic naming conventions
+ *   - Consistent color palette and opacity transitions
+ */
+
+/* 
+ * Font imports from source globals.css - matching the exact font families used
+ * in the original design
+ */
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+
+@font-face {
+  font-family: "Figtree-SemiBold";
+  src: local("Figtree-SemiBold");
+}
+
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+}
+
+@font-face {
+  font-family: "Figtree-ExtraBold";
+  src: local("Figtree-ExtraBold");
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: local("Inter-Regular");
+}
+
+/* 
+ * IonContent
+ */
+.admin-reservation-content {
+  --background: transparent;
+}
+
+/* 
+ * Full-page background
+ */
+.admin-reservation-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background:
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920')
+    center / cover no-repeat;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+ * Header area (logo + sign-out)
+ */
+.admin-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0 16px;
+  min-height: 220px;
+}
+
+/* Logo */
+.admin-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.admin-logo-name {
+  font-family: "Sacramento-Regular", cursive, Helvetica;
+  font-weight: 400;
+  color: #f0eee4;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+.admin-logo-sub {
+  font-family: "Edu QLD Beginner-Regular", cursive, Helvetica;
+  font-weight: 400;
+  color: #f0eee4;
+  font-size: clamp(14px, 2vw, 24px);
+  letter-spacing: 3px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* Sign Out */
+.admin-signout {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  z-index: 20;
+}
+.admin-signout:hover { opacity: 0.75; }
+.admin-signout svg { color: #f0eee4; width: 26px; height: 26px; }
+.sign-out-text {
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* 
+ * Navbar bar
+ */
+.admin-navbar-bar {
+  background-color: rgba(225, 210, 168, 0.5);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    0px 4px 4px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 4vw, 4rem);
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.admin-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 5rem);
+}
+
+.admin-nav-item {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 1.8vw, 24px);
+  color: #f0eee4;
+  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0;
+}
+.admin-nav-item:hover { opacity: 0.75; }
+
+.admin-nav-item--active {
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  cursor: default;
+  opacity: 1 !important;
+}
+
+/* User icon on the right of navbar */
+.admin-navbar-user {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f0eee4;
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.admin-navbar-user:hover { opacity: 1; }
+.admin-navbar-user svg { width: 32px; height: 32px; }
+
+/* 
+ * Main layout: sidebar + detail
+ */
+.admin-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background-color: rgba(65, 70, 29, 0.15);
+  backdrop-filter: blur(2px);
+}
+
+/* 
+ * Left sidebar
+ */
+.admin-sidebar {
+  width: clamp(220px, 25vw, 340px);
+  flex-shrink: 0;
+  background-color: rgba(225, 210, 168, 0.5);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 100%;
+}
+
+/* Category header row */
+.admin-category-header {
+  height: 56px;
+  background-color: rgba(240, 238, 228, 0.5);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.admin-category-header span {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #000000;
+  font-size: clamp(16px, 1.5vw, 22px);
+  letter-spacing: 1px;
+}
+
+/* Search bar under category header */
+.admin-search-bar {
+  margin: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(240, 238, 228, 0.6);
+  padding-bottom: 4px;
+}
+.admin-search-bar svg {
+  color: #f0eee4;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.admin-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f0eee4;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+}
+.admin-search-input::placeholder { color: rgba(240, 238, 228, 0.5); }
+
+/* Item list */
+.admin-item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.admin-item-row {
+  padding: 12px 20px;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #000000;
+  font-size: clamp(14px, 1.4vw, 20px);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-item-row:hover {
+  background: rgba(255,255,255,0.2);
+}
+.admin-item-row--active {
+  color: #ffffff;
+  background: rgba(65, 70, 29, 0.35);
+}
+
+.reservation-info {
+  flex: 1;
+}
+
+.reservation-name {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.reservation-details {
+  font-size: clamp(12px, 1.2vw, 16px);
+  opacity: 0.8;
+}
+
+.reservation-status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-confirmed {
+  background: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.status-pending {
+  background: rgba(255, 152, 0, 0.8);
+  color: white;
+}
+
+.status-new {
+  background: rgba(33, 150, 243, 0.8);
+  color: white;
+}
+
+/* Add New button at bottom of sidebar */
+.admin-add-new {
+  margin-top: auto;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(16px, 1.5vw, 22px);
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.admin-add-new:hover { background: rgba(255,255,255,0.1); }
+
+/* 
+ * Right detail panel
+ */
+.admin-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 3rem;
+  gap: 1rem;
+  position: relative;
+  color: #ffffff;
+}
+
+/* Edit icon top-right of detail panel */
+.admin-detail-edit {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f0eee4;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s;
+}
+.admin-detail-edit:hover { opacity: 1; }
+.admin-detail-edit svg { width: 22px; height: 22px; }
+.admin-detail-edit-line {
+  width: 22px;
+  height: 2px;
+  background: #f0eee4;
+  border-radius: 1px;
+}
+
+/* Customer name */
+.admin-detail-name {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #f0eee4;
+  font-size: clamp(20px, 2.5vw, 32px);
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Service details text (editable) */
+.admin-detail-ingredients {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: clamp(13px, 1.3vw, 18px);
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+  padding: 4px 8px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.admin-detail-ingredients::placeholder { color: rgba(255,255,255,0.4); }
+.admin-detail-ingredients:focus { border-bottom-color: rgba(255,255,255,0.8); }
+
+/* Stock group */
+.admin-stock-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-stock-number {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  text-align: center;
+  width: 120px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.admin-stock-number::-webkit-inner-spin-button,
+.admin-stock-number::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.admin-stock-label {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(13px, 1.3vw, 18px);
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+/* Description and amenities */
+.admin-space-description {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.admin-space-amenities {
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.amenities-title {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: clamp(16px, 1.4vw, 18px);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 20px;
+  margin-bottom: 20px;
+}
+
+.amenity-item {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.amenity-item:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Save Changes button */
+.admin-save-btn {
+  min-width: 180px;
+  height: 48px;
+  background-color: rgba(240, 238, 228, 0.45);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 3px rgba(0,0,0,0.13),
+    inset -1px 0 3px rgba(0,0,0,0.11);
+  border: none;
+  border-radius: 6px;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(16px, 1.5vw, 22px);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  letter-spacing: 0;
+  margin-top: 8px;
+}
+.admin-save-btn:hover { opacity: 0.85; }
+
+/* 
+ * Responsive
+ */
+@media (max-width: 768px) {
+  .admin-layout { flex-direction: column; }
+  .admin-sidebar { width: 100%; min-height: unset; }
+  .admin-detail { padding: 1.5rem 1rem; }
+  .admin-nav-menu { gap: 1rem; }
+  .admin-nav-item { font-size: 15px; }
+  .admin-signout { top: 12px; right: 12px; }
+  
+  .amenities-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .admin-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .reservation-status {
+    align-self: flex-end;
+  }
+}

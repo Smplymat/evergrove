@@ -1,0 +1,414 @@
+/*
+ * HomePage.css
+ *
+ * Design merged from source (EverGrove static HTML/CSS mockup).
+ * Source architecture used:
+ *   - Full-viewport background image with background-size: 100% 100%
+ *   - Glassmorphism overlay panel (.rectangle) via backdrop-filter + box-shadow
+ *   - Sacramento-Regular / Kavoon-Regular / Figtree / Figma Hand font families
+ *   - Absolute-positioned logo block (top:52px, left:64px)
+ *   - Frosted-glass active nav pill (.rectangle-4 style)
+ *   - Ellipse hero image (circular, right-side)
+ *   - Large decorative hero text ("Work / Connect / Recharge") in Kavoon-Regular
+ *   - Frosted CTA button (.rectangle-2 style)
+ *   - Thin horizontal divider line below hero text
+ * All existing class names, routing, auth logic, and IonPage structure are preserved.
+ */
+
+/* ─── Global font declarations (from source globals.css) ─────────────────── */
+/* Sacramento-Regular: used for the EverGrove logo wordmark */
+@font-face {
+  font-family: "Sacramento-Regular";
+  src: local("Sacramento-Regular");
+}
+/* Edu QLD Beginner: used for the logo subtitle */
+@font-face {
+  font-family: "Edu QLD Beginner-Regular";
+  src: local("Edu QLD Beginner-Regular");
+}
+/* Figma Hand: used for the hero quote subtitle */
+@font-face {
+  font-family: "Figma Hand-Regular";
+  src: local("Figma Hand-Regular");
+}
+/* Kavoon: used for the large "Work / Connect / Recharge" hero text */
+@font-face {
+  font-family: "Kavoon-Regular";
+  src: local("Kavoon-Regular");
+}
+/* Figtree ExtraBold: used for the active nav item */
+@font-face {
+  font-family: "Figtree-ExtraBold";
+  src: local("Figtree-ExtraBold");
+}
+/* Figtree Regular: used for all other nav items */
+@font-face {
+  font-family: "Figtree-Regular";
+  src: local("Figtree-Regular");
+}
+/* Zen Maru Gothic Black: used for the CTA button label */
+@font-face {
+  font-family: "Zen Maru Gothic-Black";
+  src: local("Zen Maru Gothic-Black");
+}
+
+/* ─── Page background (source: .home) ───────────────────────────────────── */
+/*
+ * Source used background-size: 100% 100% on a fixed 1440×1024 canvas.
+ * Target keeps the responsive approach but adopts the same image-fill intent
+ * via cover + the same semi-transparent overlay strategy.
+ */
+.home-content {
+  --background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920') center/cover no-repeat;
+}
+
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Glassmorphism overlay panel (source: .home .rectangle) ─────────────── */
+/*
+ * Source placed a full-width frosted-glass rectangle starting at top:303px.
+ * Here we apply the same visual treatment as a pseudo-element behind the hero
+ * section so the existing flex layout is unchanged.
+ */
+.home-container::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background-color: rgba(65, 70, 29, 0.2); /* source: #41461d33 */
+  border-radius: 6px;
+  box-shadow:
+    0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Header (source: .home .group-5 / .group-6) ────────────────────────── */
+/*
+ * Source positioned the nav bar at ~12% from top, 34% from left.
+ * Target keeps flex layout but adopts the source's transparent/no-border style.
+ */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 52px 64px 0; /* source: top:52px left:64px for logo */
+  position: relative;
+  z-index: 10;
+  background: transparent; /* source has no header background bar */
+}
+
+/* ─── Logo block (source: .home .logo / .text-wrapper / .div) ───────────── */
+.logo-section {
+  text-align: left;
+  position: relative;
+  width: 391px;
+}
+
+/* Source: font-family Sacramento-Regular, 90px, color #f0eee4 */
+.logo-title {
+  font-family: "Sacramento-Regular", 'Brush Script MT', cursive;
+  font-size: 90px;
+  color: #f0eee4;
+  margin: 0;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+/* Source: font-family Edu QLD Beginner-Regular, 25px, color #f0eee4 */
+.logo-subtitle {
+  font-family: "Edu QLD Beginner-Regular", sans-serif;
+  font-size: 25px;
+  color: #f0eee4;
+  letter-spacing: 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ─── Nav menu (source: .home .group-6 nav items) ───────────────────────── */
+.nav-menu {
+  display: flex;
+  gap: 0; /* source uses absolute positioning; we keep flex but match spacing */
+  align-items: center;
+  column-gap: 2rem;
+}
+
+/* Source: Figtree-Regular, 28px, color #f0eee4, text-shadow */
+.nav-link {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: #f0eee4;
+  text-decoration: none;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+/* Source: .home .rectangle-4 — frosted pill behind the active "Home" item */
+.nav-link.active {
+  font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
+  font-weight: 800;
+  background-color: rgba(240, 238, 228, 0.5); /* source: #f0eee480 */
+  border-radius: 50px;
+  padding: 3px 22px;
+  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
+}
+
+/* Remove the old underline active indicator — replaced by pill above */
+.nav-link.active::after {
+  display: none;
+}
+
+/* Source: .text-wrapper-7 — "Reserve Now" nav item (no special pill in source) */
+.nav-link.reserve-link {
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.sign-out-btn {
+  background: transparent;
+  border: none;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 28px;
+  color: #f0eee4;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.sign-out-btn:hover {
+  opacity: 0.8;
+}
+
+/* ─── Hero section wrapper ───────────────────────────────────────────────── */
+.hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 4rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 4rem;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 640px;
+}
+
+/* ─── Hero title (source: .home .work-connect) ───────────────────────────── */
+/*
+ * Source: Kavoon-Regular, 100px, color #e1d2a8ed, line-height 125px.
+ */
+.hero-title {
+  font-family: "Kavoon-Regular", Helvetica, sans-serif;
+  font-size: 100px;
+  font-weight: 400;
+  color: rgba(225, 210, 168, 0.93); /* source: #e1d2a8ed */
+  line-height: 125px;
+  margin: 0 0 1rem 0;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ─── Thin divider below hero title (source: .home .rectangle-3) ─────────── */
+/*
+ * Source: 500px wide, 1px, color #ffffff4f, positioned below the hero text block.
+ */
+.hero-divider {
+  width: 500px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.31); /* source: #ffffff4f */
+  margin: 0 0 1.5rem 26px;
+}
+
+/* ─── Hero subtitle / quote (source: .home .find-your-focus-to) ─────────── */
+/*
+ * Source: Figma Hand-Regular, 24px, color #f0eee4db.
+ */
+.hero-subtitle {
+  font-family: "Figma Hand-Regular", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: rgba(240, 238, 228, 0.86); /* source: #f0eee4db */
+  line-height: normal;
+  margin: 0 0 2.5rem 0;
+  font-style: normal;
+}
+
+/* ─── CTA button (source: .home .group / .rectangle-2 / .text-wrapper-2) ── */
+/*
+ * Source: white frosted pill (300×65px), Zen Maru Gothic-Black 25px,
+ *         underlined text, box-shadow with #41461d33.
+ */
+.cta-button {
+  --background: rgba(255, 255, 255, 0.85); /* source: #ffffffd9 */
+  --background-hover: rgba(255, 255, 255, 0.95);
+  --color: #1e1e1e; /* source: color #1e1e1e */
+  --border-radius: 25px;
+  --padding-start: 1.5rem;
+  --padding-end: 1.5rem;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --box-shadow: 2px 2px 3px 5px rgba(65, 70, 29, 0.2); /* source: #41461d33 */
+  height: 65px;
+  min-width: 300px;
+  font-family: "Zen Maru Gothic-Black", Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: 0;
+  text-decoration: underline;
+  backdrop-filter: none;
+}
+
+/* ─── Hero image circle (source: .home .ellipse) ────────────────────────── */
+/*
+ * Source: 668×668px ellipse image positioned to the right.
+ * Target keeps the responsive circle approach, updated to match source sizing intent.
+ */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: none; /* source ellipse has no border */
+  box-shadow: none;
+}
+
+.people-working {
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800') center/cover;
+}
+
+/* ─── Responsive overrides ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-header {
+    padding: 1.5rem 2rem 0;
+  }
+
+  .logo-title {
+    font-size: 60px;
+  }
+
+  .logo-subtitle {
+    font-size: 18px;
+  }
+
+  .nav-link,
+  .sign-out-btn {
+    font-size: 20px;
+  }
+
+  .hero-section {
+    padding: 2rem 2rem 2rem;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 70px;
+    line-height: 90px;
+  }
+
+  .hero-divider {
+    width: 80%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .image-circle {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem 0;
+  }
+
+  .logo-section {
+    width: auto;
+    text-align: center;
+  }
+
+  .logo-title {
+    font-size: 48px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    column-gap: 1.5rem;
+  }
+
+  .nav-link,
+  .sign-out-btn {
+    font-size: 18px;
+  }
+
+  .hero-title {
+    font-size: 50px;
+    line-height: 65px;
+  }
+
+  .image-circle {
+    width: 300px;
+    height: 300px;
+  }
+
+  .cta-button {
+    min-width: 260px;
+    font-size: 20px;
+  }
+}

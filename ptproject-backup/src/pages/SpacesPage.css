@@ -1,0 +1,277 @@
+.spaces-content {
+  --background: #3a3a3a;
+}
+
+.spaces-container {
+  min-height: 100vh;
+  background: #3a3a3a;
+}
+
+/* Header Styles */
+.spaces-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-section {
+  text-align: left;
+}
+
+.logo-title {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2.5rem;
+  color: white;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.65rem;
+  color: white;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 300;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: opacity 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+.nav-link.reserve-link {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+}
+
+/* Hero Section */
+.spaces-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920') center/cover;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spaces-hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 1rem 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.spaces-hero-subtitle {
+  font-size: 0.9rem;
+  color: white;
+  letter-spacing: 3px;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Spaces List */
+.spaces-list {
+  padding: 3rem 0;
+}
+
+.space-item {
+  display: flex;
+  gap: 3rem;
+  padding: 3rem 4rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.space-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.space-image {
+  flex: 1;
+  max-width: 400px;
+}
+
+.space-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.space-details {
+  flex: 1;
+  color: white;
+}
+
+.space-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #E8DCC4;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.space-tagline {
+  font-size: 1rem;
+  color: #B8B8B8;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+}
+
+.space-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #D8D8D8;
+  margin: 0 0 1.5rem 0;
+}
+
+.space-capacity {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1rem 0;
+}
+
+.space-info {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.space-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.space-features li {
+  font-size: 0.95rem;
+  color: #C8C8C8;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.space-features li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #8B5A2B;
+  font-size: 1.2rem;
+}
+
+.reserve-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-hover: rgba(255, 255, 255, 0.3);
+  --color: white;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: white;
+  --border-radius: 25px;
+  --padding-start: 2rem;
+  --padding-end: 2rem;
+  --padding-top: 0.7rem;
+  --padding-bottom: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .spaces-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .space-item,
+  .space-item.reverse {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .space-image {
+    max-width: 100%;
+  }
+
+  .spaces-hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .spaces-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo-section {
+    text-align: center;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .spaces-hero {
+    padding: 3rem 1rem;
+    min-height: 30vh;
+  }
+
+  .spaces-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .space-item {
+    padding: 2rem 1rem;
+  }
+
+  .space-title {
+    font-size: 1.5rem;
+  }
+
+  .space-image img {
+    height: 250px;
+  }
+}
