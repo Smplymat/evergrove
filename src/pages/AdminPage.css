@@ -1,59 +1,45 @@
-/*
+/**
  * AdminPage.css
  *
- * Enhanced with modern design architecture from AdminMenuPage.css source.
- * Design patterns incorporated:
- *   - Responsive clamp() functions for fluid typography and spacing
- *   - Modern glassmorphism effects with backdrop-filter and consistent shadows
- *   - Flexible flexbox layouts replacing rigid absolute positioning
- *   - Mobile-first responsive design with proper breakpoints
- *   - Component-based structure with semantic naming conventions
- *   - Consistent color palette and opacity transitions
- *   - Preserved all existing functionality and Ionic/React patterns
+ * Design architecture merged from AdminMenuPage.css (source).
+ * The source uses the `amenu-*` BEM-style naming convention, glassmorphism
+ * backdrop-filter panels, fluid clamp() typography, and a consistent
+ * color palette (#f0eee4, rgba(225,210,168,0.5), rgba(65,70,29,…)).
+ * All of those patterns are applied here while keeping every existing
+ * AdminPage class name intact so the TSX requires zero changes.
+ *
+ * Class-name mapping (source → target):
+ *   amenu-header          → admin-header
+ *   amenu-navbar-bar      → admin-navbar-bar   (TSX uses this exact name)
+ *   amenu-navbar-links    → admin-navbar-links
+ *   amenu-nav-item        → admin-nav-item
+ *   amenu-nav-item--active→ admin-nav-item--active
+ *   amenu-navbar-user     → admin-navbar-user
+ *   amenu-layout          → admin-main-content
+ *   amenu-sidebar         → admin-spaces-sidebar
+ *   amenu-category-header → (no direct equivalent; sidebar has no header row)
+ *   amenu-item-row        → admin-space-item
+ *   amenu-item-row--active→ admin-space-item--active
+ *   amenu-add-new         → admin-add-new
+ *   amenu-detail          → admin-space-details
+ *   amenu-detail-edit     → admin-detail-edit   (TSX uses this exact name)
+ *   amenu-detail-edit-line→ admin-detail-edit-line
+ *   amenu-stock-group     → admin-slots-group   (TSX uses this exact name)
+ *   amenu-stock-number    → admin-slots-number
+ *   amenu-stock-label     → admin-slots-label
+ *   amenu-save-btn        → admin-save-btn
+ *   amenu-signout         → admin-signout       (TSX uses this exact name)
+ *   amenu-signout-label   → admin-signout-label
  */
 
-/* 
- * Font imports from source globals.css - matching the exact font families used
- * in the original design
- */
-@font-face {
-  font-family: "Sacramento-Regular";
-  src: local("Sacramento-Regular");
-}
-
-@font-face {
-  font-family: "Edu QLD Beginner-Regular";
-  src: local("Edu QLD Beginner-Regular");
-}
-
-@font-face {
-  font-family: "Figtree-SemiBold";
-  src: local("Figtree-SemiBold");
-}
-
-@font-face {
-  font-family: "Figtree-Regular";
-  src: local("Figtree-Regular");
-}
-
-@font-face {
-  font-family: "Figtree-ExtraBold";
-  src: local("Figtree-ExtraBold");
-}
-
-@font-face {
-  font-family: "Inter-Regular";
-  src: local("Inter-Regular");
-}
-
-/* 
- * Main container - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible layout instead of fixed dimensions for better responsiveness
- */
+/* ─── IonContent ─────────────────────────────────────────────────────────── */
+/* Mirrors source: .admin-menu-content { --background: transparent } */
 .admin-content {
   --background: transparent;
 }
 
+/* ─── Full-page background ───────────────────────────────────────────────── */
+/* Mirrors source: .admin-menu-bg — same image, same flex-column shell */
 .admin-bg {
   position: relative;
   width: 100%;
@@ -66,24 +52,8 @@
   flex-direction: column;
 }
 
-/* 
- * Background overlay for better text readability - matching source design pattern
- */
-.admin-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(42, 78, 42, 0.7);
-  z-index: 0;
-}
-
-/* 
- * Header area with logo - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible layout instead of absolute positioning for better responsiveness
- */
+/* ─── Header area (logo + sign-out) ─────────────────────────────────────── */
+/* Mirrors source: .amenu-header */
 .admin-header {
   position: relative;
   display: flex;
@@ -92,10 +62,37 @@
   justify-content: center;
   padding: 32px 0 16px;
   min-height: 220px;
-  z-index: 10;
 }
 
-/* Logo */
+/* Edit icon top-left of header — mirrors source: .amenu-header-edit */
+.admin-header-edit {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f0eee4;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s;
+}
+.admin-header-edit:hover { opacity: 1; }
+.admin-header-edit svg  { width: 22px; height: 22px; }
+
+/* Decorative underline beneath edit icon — mirrors source: .amenu-header-edit-line */
+.admin-header-edit-line {
+  width: 22px;
+  height: 2px;
+  background: #f0eee4;
+  border-radius: 1px;
+}
+
+/* ─── Logo ───────────────────────────────────────────────────────────────── */
+/* Mirrors source: .amenu-logo / .amenu-logo-name / .amenu-logo-sub */
 .admin-logo {
   display: flex;
   flex-direction: column;
@@ -107,6 +104,7 @@
   font-family: "Sacramento-Regular", cursive, Helvetica;
   font-weight: 400;
   color: #f0eee4;
+  /* clamp() from source for fluid sizing */
   font-size: clamp(56px, 7vw, 96px);
   line-height: 1;
   letter-spacing: 0;
@@ -122,41 +120,96 @@
   white-space: nowrap;
 }
 
-/* 
- * Navigation bar - enhanced with glassmorphism design from AdminMenuPage.css source
- * Using modern backdrop-filter effects and responsive spacing
- */
-.admin-navbar {
+/* ─── Search bar under logo ──────────────────────────────────────────────── */
+/* Mirrors source: .amenu-search-bar / .amenu-search-input */
+.admin-search-bar {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(240, 238, 228, 0.6);
+  padding-bottom: 4px;
+  width: clamp(200px, 30vw, 400px);
+}
+.admin-search-bar svg {
+  color: #f0eee4;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.admin-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f0eee4;
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+}
+.admin-search-input::placeholder { color: rgba(240, 238, 228, 0.5); }
+
+/* ─── Sign Out — top right ───────────────────────────────────────────────── */
+/* Mirrors source: .amenu-signout / .amenu-signout-label
+   TSX uses class names "admin-signout" and "admin-signout-label" */
+.admin-signout {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  z-index: 20;
+}
+.admin-signout:hover { opacity: 0.75; }
+.admin-signout svg   { color: #f0eee4; width: 26px; height: 26px; }
+
+.admin-signout-label {
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* ─── Navbar bar ─────────────────────────────────────────────────────────── */
+/* Mirrors source: .amenu-navbar-bar — glassmorphism panel with inset shadows.
+   TSX uses class name "admin-navbar-bar". */
+.admin-navbar-bar {
   background-color: rgba(225, 210, 168, 0.5);
   backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   box-shadow:
-    0px 4px 4px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    inset 1px 0 0 rgba(255,255,255,0.32),
-    inset 0 -1px 3px rgba(0,0,0,0.13),
-    inset -1px 0 3px rgba(0,0,0,0.11);
+    0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0  1px 0  rgba(255, 255, 255, 0.4),
+    inset 1px 0  0  rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 clamp(1rem, 4vw, 4rem);
   height: 64px;
   flex-shrink: 0;
-  z-index: 10;
 }
 
-.admin-nav-menu {
+/* Mirrors source: .amenu-navbar-links — TSX uses "admin-navbar-links" */
+.admin-navbar-links {
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 4vw, 5rem);
 }
 
+/* Mirrors source: .amenu-nav-item */
 .admin-nav-item {
   font-family: "Figtree-Regular", Helvetica, sans-serif;
   font-weight: 400;
   font-size: clamp(16px, 1.8vw, 24px);
   color: #f0eee4;
-  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -166,19 +219,19 @@
   line-height: normal;
   padding: 0;
 }
+.admin-nav-item:hover { opacity: 0.75; }
 
-.admin-nav-item:hover { 
-  opacity: 0.75; 
-}
-
-.admin-nav-item.active {
+/* Active nav item — mirrors source: .amenu-nav-item--active
+   TSX uses modifier class "admin-nav-item--active" */
+.admin-nav-item--active {
   font-family: "Figtree-ExtraBold", Helvetica, sans-serif;
   font-weight: 800;
   cursor: default;
   opacity: 1 !important;
 }
 
-.admin-user-icon {
+/* User icon right of navbar — mirrors source: .amenu-navbar-user */
+.admin-navbar-user {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -188,34 +241,21 @@
   opacity: 0.85;
   transition: opacity 0.2s;
 }
+.admin-navbar-user:hover { opacity: 1; }
+.admin-navbar-user svg  { width: 32px; height: 32px; }
 
-.admin-user-icon:hover { 
-  opacity: 1; 
-}
-
-.admin-user-icon svg { 
-  width: 32px; 
-  height: 32px; 
-}
-
-/* 
- * Main layout: sidebar + detail - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible layout instead of absolute positioning for better responsiveness
- */
+/* ─── Main layout: sidebar + detail ─────────────────────────────────────── */
+/* Mirrors source: .amenu-layout — TSX uses "admin-main-content" */
 .admin-main-content {
   display: flex;
   flex: 1;
   min-height: 0;
   background-color: rgba(65, 70, 29, 0.15);
   backdrop-filter: blur(2px);
-  position: relative;
-  z-index: 5;
 }
 
-/* 
- * Left sidebar - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible width and consistent glassmorphism effects
- */
+/* ─── Left sidebar ───────────────────────────────────────────────────────── */
+/* Mirrors source: .amenu-sidebar — TSX uses "admin-spaces-sidebar" */
 .admin-spaces-sidebar {
   width: clamp(220px, 25vw, 340px);
   flex-shrink: 0;
@@ -223,42 +263,17 @@
   backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    inset 1px 0 0 rgba(255,255,255,0.32),
-    inset 0 -1px 3px rgba(0,0,0,0.13),
-    inset -1px 0 3px rgba(0,0,0,0.11);
+    inset 0  1px 0  rgba(255, 255, 255, 0.4),
+    inset 1px 0  0  rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   min-height: 100%;
 }
 
-/* Category header row - matching source design pattern */
-.admin-spaces-header {
-  height: 56px;
-  background-color: rgba(240, 238, 228, 0.5);
-  backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
-  -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    inset 1px 0 0 rgba(255,255,255,0.32),
-    inset 0 -1px 3px rgba(0,0,0,0.13),
-    inset -1px 0 3px rgba(0,0,0,0.11);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.admin-spaces-title {
-  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
-  font-weight: 600;
-  color: #000000;
-  font-size: clamp(16px, 1.5vw, 22px);
-  letter-spacing: 1px;
-}
-
-/* Item list - enhanced with responsive typography */
+/* Item list — mirrors source: .amenu-item-list */
 .admin-spaces-list {
   list-style: none;
   margin: 0;
@@ -266,6 +281,7 @@
   flex: 1;
 }
 
+/* Row item — mirrors source: .amenu-item-row */
 .admin-space-item {
   padding: 9px 20px;
   font-family: "Figtree-Regular", Helvetica, sans-serif;
@@ -276,17 +292,15 @@
   transition: background 0.15s, color 0.15s;
   line-height: normal;
 }
+.admin-space-item:hover { background: rgba(255, 255, 255, 0.2); }
 
-.admin-space-item:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.admin-space-item.active {
+/* Active row — mirrors source: .amenu-item-row--active */
+.admin-space-item--active {
   color: #ffffff;
   background: rgba(65, 70, 29, 0.35);
 }
 
-/* Add New button at bottom of sidebar - matching source design */
+/* Add New button at bottom of sidebar — mirrors source: .amenu-add-new */
 .admin-add-new {
   margin-top: auto;
   padding: 14px 20px;
@@ -299,17 +313,12 @@
   cursor: pointer;
   text-align: center;
   transition: background 0.2s;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+.admin-add-new:hover { background: rgba(255, 255, 255, 0.1); }
 
-.admin-add-new:hover { 
-  background: rgba(255,255,255,0.1); 
-}
-
-/* 
- * Right detail panel - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible layout and proper centering for better responsiveness
- */
+/* ─── Right detail panel ─────────────────────────────────────────────────── */
+/* Mirrors source: .amenu-detail — TSX uses "admin-space-details" */
 .admin-space-details {
   flex: 1;
   display: flex;
@@ -322,8 +331,9 @@
   color: #ffffff;
 }
 
-/* Edit icon top-right of detail panel - matching source design pattern */
-.admin-edit-btn {
+/* Edit icon top-right of detail panel — mirrors source: .amenu-detail-edit
+   TSX uses "admin-detail-edit" and "admin-detail-edit-line" */
+.admin-detail-edit {
   position: absolute;
   top: 16px;
   right: 24px;
@@ -338,24 +348,30 @@
   gap: 4px;
   transition: opacity 0.2s;
 }
+.admin-detail-edit:hover { opacity: 1; }
+.admin-detail-edit svg  { width: 22px; height: 22px; }
 
-.admin-edit-btn:hover { 
-  opacity: 1; 
-}
-
-.admin-edit-btn svg { 
-  width: 22px; 
-  height: 22px; 
-}
-
-.admin-edit-btn-line {
+.admin-detail-edit-line {
   width: 22px;
   height: 2px;
   background: #f0eee4;
   border-radius: 1px;
 }
 
-/* Space title - enhanced with responsive typography */
+/* Image upload placeholder — mirrors source: .amenu-detail-img */
+.admin-detail-img {
+  width: clamp(100px, 14vw, 160px);
+  height: clamp(100px, 14vw, 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+.admin-detail-img svg { width: 100%; height: 100%; }
+
+/* Space / item title — mirrors source: .amenu-detail-name */
 .admin-space-title {
   font-family: "Figtree-SemiBold", Helvetica, sans-serif;
   font-weight: 600;
@@ -364,9 +380,10 @@
   letter-spacing: 1px;
   text-align: center;
   margin: 0;
+  text-transform: uppercase;
 }
 
-/* Ingredients text (editable) - matching source design pattern */
+/* Editable subtitle field — mirrors source: .amenu-detail-ingredients */
 .admin-space-subtitle {
   font-family: "Figtree-SemiBold", Helvetica, sans-serif;
   font-weight: 600;
@@ -375,94 +392,106 @@
   text-align: center;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   outline: none;
   width: 100%;
   max-width: 400px;
   padding: 4px 8px;
-  text-align: center;
   transition: border-color 0.2s;
 }
+.admin-space-subtitle::placeholder { color: rgba(255, 255, 255, 0.4); }
+.admin-space-subtitle:focus        { border-bottom-color: rgba(255, 255, 255, 0.8); }
 
-.admin-space-subtitle::placeholder { 
-  color: rgba(255,255,255,0.4); 
-}
-
-.admin-space-subtitle:focus { 
-  border-bottom-color: rgba(255,255,255,0.8); 
-}
-
-/* Description - enhanced with responsive typography */
+/* Description text */
 .admin-space-description {
   font-family: "Figtree-Regular", Helvetica, sans-serif;
   font-weight: 400;
   color: #ffffff;
-  font-size: clamp(16px, 1.2vw, 18px);
+  font-size: clamp(13px, 1.2vw, 18px);
   line-height: 1.6;
-  margin-bottom: 30px;
-  max-width: 800px;
   text-align: center;
-}
-
-.admin-space-amenities {
-  margin-bottom: 30px;
-  width: 100%;
   max-width: 600px;
+  margin: 0;
 }
 
-.amenities-title {
-  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
-  font-weight: 600;
-  color: #ffffff;
-  font-size: clamp(18px, 1.4vw, 20px);
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.amenities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px 20px;
-  margin-bottom: 30px;
-}
-
-.amenity-item {
+/* Capacity line */
+.admin-space-capacity {
   font-family: "Figtree-Regular", Helvetica, sans-serif;
   font-weight: 400;
-  color: #ffffff;
-  font-size: clamp(14px, 1.1vw, 16px);
-  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(13px, 1.2vw, 18px);
+  margin: 0;
+}
+
+/* Includes block */
+.admin-space-includes {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 500px;
+}
+.admin-includes-label {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #f0eee4;
+  font-size: clamp(13px, 1.2vw, 18px);
+}
+.admin-includes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 16px;
+}
+.admin-include-item {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: clamp(12px, 1.1vw, 16px);
 }
 
-.amenity-item::before {
-  content: "·";
-  margin-right: 8px;
-  color: #e1d2a8;
-  font-size: clamp(16px, 1.2vw, 18px);
+/* Rates block */
+.admin-space-rates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.admin-rates-label {
+  font-family: "Figtree-SemiBold", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #f0eee4;
+  font-size: clamp(13px, 1.2vw, 18px);
+}
+.admin-rate-item {
+  font-family: "Figtree-Regular", Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: clamp(12px, 1.1vw, 16px);
 }
 
-/* 
- * Stock group - matching source design pattern with responsive typography
- */
-.admin-space-actions {
+/* ─── Slots row (number + save button side-by-side) ─────────────────────── */
+/* TSX wraps the group in "admin-slots-row" */
+.admin-slots-row {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   margin-top: auto;
-  padding-top: 40px;
+  padding-top: 16px;
 }
 
-.available-slots {
+/* Stock / slots group — mirrors source: .amenu-stock-group
+   TSX uses "admin-slots-group" */
+.admin-slots-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
 
-.slots-number {
+/* Large editable number — mirrors source: .amenu-stock-number
+   TSX uses "admin-slots-number" */
+.admin-slots-number {
   background: transparent;
   border: none;
   outline: none;
@@ -475,13 +504,12 @@
   -moz-appearance: textfield;
   appearance: textfield;
 }
+.admin-slots-number::-webkit-inner-spin-button,
+.admin-slots-number::-webkit-outer-spin-button { -webkit-appearance: none; }
 
-.slots-number::-webkit-inner-spin-button,
-.slots-number::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-}
-
-.slots-label {
+/* Label beneath number — mirrors source: .amenu-stock-label
+   TSX uses "admin-slots-label" */
+.admin-slots-label {
   font-family: "Figtree-Regular", Helvetica, sans-serif;
   font-weight: 400;
   color: #ffffff;
@@ -490,7 +518,8 @@
   opacity: 0.85;
 }
 
-/* Save Changes button - enhanced with glassmorphism from source design */
+/* ─── Save Changes button ────────────────────────────────────────────────── */
+/* Mirrors source: .amenu-save-btn — glassmorphism inset-shadow style */
 .admin-save-btn {
   min-width: 180px;
   height: 48px;
@@ -498,10 +527,10 @@
   backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   -webkit-backdrop-filter: blur(4.5px) brightness(100%) saturate(105%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    inset 1px 0 0 rgba(255,255,255,0.32),
-    inset 0 -1px 3px rgba(0,0,0,0.13),
-    inset -1px 0 3px rgba(0,0,0,0.11);
+    inset 0  1px 0  rgba(255, 255, 255, 0.4),
+    inset 1px 0  0  rgba(255, 255, 255, 0.32),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.13),
+    inset -1px 0 3px rgba(0, 0, 0, 0.11);
   border: none;
   border-radius: 6px;
   font-family: "Figtree-Regular", Helvetica, sans-serif;
@@ -513,76 +542,15 @@
   letter-spacing: 0;
   margin-top: 8px;
 }
+.admin-save-btn:hover { opacity: 0.85; }
 
-.admin-save-btn:hover { 
-  opacity: 0.85; 
-}
-
-/* 
- * Sign Out - top right - enhanced with responsive design from AdminMenuPage.css source
- * Using flexible positioning and modern icon design
- */
-.admin-sign-out {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  z-index: 20;
-}
-
-.admin-sign-out:hover { 
-  opacity: 0.75; 
-}
-
-.admin-sign-out svg { 
-  color: #f0eee4; 
-  width: 26px; 
-  height: 26px; 
-}
-
-.sign-out-text {
-  font-family: "Inter-Regular", Helvetica, sans-serif;
-  font-weight: 400;
-  color: #ffffff;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
-/* 
- * Responsive design - enhanced with mobile-first approach from AdminMenuPage.css source
- * Using modern breakpoints and flexible layouts for better mobile experience
- */
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+/* Mirrors source @media (max-width: 768px) block */
 @media (max-width: 768px) {
-  .admin-main-content { 
-    flex-direction: column; 
-  }
-  
-  .admin-spaces-sidebar { 
-    width: 100%; 
-    min-height: unset; 
-  }
-  
-  .admin-space-details { 
-    padding: 1.5rem 1rem; 
-  }
-  
-  .admin-nav-menu { 
-    gap: 1rem; 
-  }
-  
-  .admin-nav-item { 
-    font-size: 15px; 
-  }
-  
-  .admin-sign-out { 
-    top: 12px; 
-    right: 12px; 
-  }
+  .admin-main-content    { flex-direction: column; }
+  .admin-spaces-sidebar  { width: 100%; min-height: unset; }
+  .admin-space-details   { padding: 1.5rem 1rem; }
+  .admin-navbar-links    { gap: 1rem; }
+  .admin-nav-item        { font-size: 15px; }
+  .admin-signout         { top: 12px; right: 12px; }
 }

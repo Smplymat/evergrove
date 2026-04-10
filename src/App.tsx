@@ -81,7 +81,7 @@ const App: React.FC = () => {
     return (
       <IonApp>
         <DataProvider>
-          <IonReactRouter>
+          <IonReactRouter basename="/evergrove">
             <IonRouterOutlet id="main">
               <Route path="/admin" exact={true} component={AdminPage} />
               <Route path="/admin-accounts" exact={true} component={AdminAccountsPage} />
@@ -99,7 +99,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <DataProvider>
-        <IonReactRouter>
+        <IonReactRouter basename="/evergrove">
           <IonRouterOutlet id="main">
             <Route path="/" exact={true} component={HomePage} />
             <Route path="/spaces" exact={true} component={SpacesPage} />
